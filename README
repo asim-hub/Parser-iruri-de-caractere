@@ -1,0 +1,42 @@
+ASIMIONESEI DANIEL 336CB
+
+Functii:
+
+1) main:
+-deschid fisierul din care cites
+-citesc pattern si textul in care caut
+-apelez functia parser care implementeaza algoritmul Boyer-Moore
+-inchid fisierul in care citesc
+
+2)make_delta
+Aici construiesc matricea de care am nevoie in algoritmul lui Boyer-Moore.
+Matricea o reprezint sub forma unui dictionar in care cheia este o pereche
+(Stare, Litera), iar valoarea este indexul urmatoarei stari (linii).
+Initial, in dictionar pun toate perechile posibil (Stare, Litera),unde in fiecare
+obiect de tip stare, am un prefix din pattern si indexul lui.Practic, in dictionar
+am toate combinatiile posibile dintre prefixele patternu-lui si literele din alfabet.
+Toate aceste key perechi vor avea initial valoarea 0.
+Inainte sa incep constructia matricii, mi-am definit o lista de stari posibile
+si o lista de prefixe posibile ale pattern-ului.
+In constructia matricii(pe linii am prefixe, iar pe coloane am literele din alfabet)
+am identificat 2 cazuri:
+a)cazul in care urmatoarea litera (de pe coloana) se potriveste cu prefixul pattern-ului (de pe linie)
+si in cazul asta ma duc in urmatoarea stare (iar in matrice pun indexul urmatoarei stari), adica nu
+mi s-a stricat secventa pe care o caut.
+b)cazul in care urmatoarea litera nu se potriveste cu prefixul pattern-ului, iar aici avem iar
+doua situatii: fie exista un sufix al secventei contruite pana atunci, care este prefix al patern-ului,
+fie trec la urmatoarea litera in text si caut pattern-ul de la capat, pentru ca mi s-a stricat secventa.
+La final returnez dictionarul(matricea).
+
+3)parser
+In acesta functie implementez firul principal al algoritmului lui Boyer-Moore, prezentat
+si la curs pe slide-uri.
+Aici deschid si fiserul pentru scriere, pe care il primesc ca paramteru.
+Apelez functia make_delta pentru a construi matricea pe care se bazeaza alg.
+Scriu in fisier, pe care dupa il inchid.
+
+Cu ajutorul clasei State imi voi reprezenta starile:nr/id stare si prefix-ul patern-ului
+corespunzator ei.
+
+
+
